@@ -1,10 +1,8 @@
-import { SequelizeConfig } from 'sequelize-typescript/lib/types/SequelizeConfig';
-
 interface SQLSetting {
-    [ prop: string ]: SequelizeConfig
+    [ prop: string ]: any
 }
 
-const projectName = '';
+const projectName = 'wired-portfolio';
 
 const setting: SQLSetting = {
     'dev': {

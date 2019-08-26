@@ -10,7 +10,9 @@ type UserRole =
 
 const bcrypt = require('bcrypt');
 
-@Scopes({})
+@Scopes(() => {
+    return {};
+})
 @Table({
     timestamps: true,
     tableName: 'Users'
@@ -27,20 +29,23 @@ export default class User extends Model<User> {
     email?: string;
 
     @Column({
-        type: DataType.STRING,
-        set: function (value) {
-            const salt = bcrypt.genSaltSync(10);
-            const encryptedPass = bcrypt.hashSync(value, salt);
-            this.setDataValue('password', encryptedPass);
-        }
-    })
-    password?: string;
-
-    @Column({
         type: DataType.INTEGER,
         defaultValue: 9
     })
     role: UserRole;
+
+    @Column({
+        type: DataType.STRING,
+    })
+    get password(): string {
+        return this.getDataValue('password');
+    }
+
+    set password(value: string) {
+        const salt = bcrypt.genSaltSync(10);
+        const encryptedPass = bcrypt.hashSync(value, salt);
+        this.setDataValue('password', encryptedPass);
+    }
 
     isAdmin() {
         return this.role === 0;

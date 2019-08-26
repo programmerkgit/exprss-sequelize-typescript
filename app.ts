@@ -1,4 +1,3 @@
-import { authRouter } from './app/routes/auth';
 import { config } from './config';
 import { secret } from './config.secret';
 
@@ -27,8 +26,6 @@ app.use(sassMiddleware({
     sourceMap: true
 }));
 app.use(express.static(path.join(__dirname, '../public')));
-
-app.use('/', authRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
