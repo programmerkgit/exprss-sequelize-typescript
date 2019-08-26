@@ -8,7 +8,8 @@
     "start": "node ./dist/bin/www.js",
     "nodemon": "nodemon ./dist/bin/www.js",
     "test": "NODE_ENV=test jasmine",
-    "build": "rm -rf dist; tsc"
+    "build": "rm -rf dist; tsc",
+    "debug": "nodemon --inspect"
   },
   "dependencies": {
     "@types/cors": "^2.8.5",
